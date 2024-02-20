@@ -1,5 +1,6 @@
 // 9.2.1 utils 함수 분리하기
-@import './styles/utils';
+// @import './styles/utils';
+@import 'utils.scss';
 
 .SassComponent {
     display: flex;
