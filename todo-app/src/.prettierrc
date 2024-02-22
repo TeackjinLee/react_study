@@ -1,0 +1,9 @@
+// 10.1.2 Prettier 설정
+{
+    "singleQuote": true,
+    "semi": true,
+    "useTabs": false,
+    "tabWidth": 2,
+    "trailingComma": "all",
+    "printWidth": 80
+}
