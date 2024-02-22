@@ -1,8 +1,9 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import TodoTemplate from './TodoTemplate';
 
+// 10.1.4 App 컴포넌트 초기화
 const App = () => {
-  return <div>Todo App을 만들자!</div>;
+  return <TodoTemplate>Todo App을 만들자!</TodoTemplate>;
 };
 
 export default App;
