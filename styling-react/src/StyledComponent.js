@@ -26,6 +26,8 @@ const Button = styled.button`
     }
 
     /* 다음 코드가 inverted 값이 true일 때 특정 스타일을 부여해 줍시다. */
+    /* 9.4.4 props에 따른 조건부 스타일링 */
+    /* props를 참조한다면, 반드시 CSS로 감싸 주어서 Tagged 템플릿 리터럴을 사용해 주어야 합니다. */
     ${props => 
         props.inverted &&
         css`
