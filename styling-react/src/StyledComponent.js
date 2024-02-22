@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-
+// 9.4.5 반응형 디자인
 const sizes = {
     desktop: 1024,
     tablet: 768
