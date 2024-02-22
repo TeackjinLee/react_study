@@ -1,5 +1,5 @@
 import React from 'react';
-import TodoTemplate from './TodoTemplate';
+import TodoTemplate from './components/TodoTemplate';
 
 // 10.1.4 App 컴포넌트 초기화
 const App = () => {
