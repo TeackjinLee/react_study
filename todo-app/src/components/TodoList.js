@@ -4,6 +4,7 @@ import './TodoList.scss';
 import { List } from 'react-virtualized';
 
 const TodoList = ({ todos, onRemove, onToggle }) => {
+  // 11.8.2 TodoList 수정
   const rowRenderer = useCallback(
     ({ index, key, style }) => {
       const todo = todos[index];
