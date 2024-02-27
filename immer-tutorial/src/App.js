@@ -1,4 +1,5 @@
 import React, { useRef, useCallback, useState } from "react";
+// 12.1.4 App 컴포넌트에 immer 적용하기
 import { produce } from "immer";
 
 // 11.1.2 immer를 사용하지 않고 불변성 유지
@@ -11,19 +12,16 @@ const App = () => {
   });
 
   // input 수정을 위한 함수
-  const onChange = useCallback(
-    (e) => {
-      const { name, value } = e.target;
-      setForm(
-        produce(form, (draft) => {
-          // ...form,
-          // [name]: [value],
-          draft[name] = value;
-        })
-      );
-    },
-    [form]
-  );
+  const onChange = useCallback((e) => {
+    const { name, value } = e.target;
+    setForm(
+      produce((draft) => {
+        // ...form,
+        // [name]: [value],
+        draft[name] = value;
+      })
+    );
+  }, []);
 
   // form 등록을 위한 함수
   const onSubmit = useCallback(
@@ -37,7 +35,7 @@ const App = () => {
 
       // array에 새 항목 등록
       setData(
-        produce(data, (draft) => {
+        produce((draft) => {
           // ...data,
           // array: data.array.concat(info),
           draft.array.push(info);
@@ -55,21 +53,18 @@ const App = () => {
   );
 
   // 항목을 삭제하는 함수
-  const onRemove = useCallback(
-    (id) => {
-      setData(
-        // ...data,
-        // array: data.array.filter((info) => info.id !== id),
-        produce(data, (draft) => {
-          draft.array.splice(
-            draft.array.findIndex((info) => info.id === id),
-            1
-          );
-        })
-      );
-    },
-    [data]
-  );
+  const onRemove = useCallback((id) => {
+    setData(
+      // ...data,
+      // array: data.array.filter((info) => info.id !== id),
+      produce((draft) => {
+        draft.array.splice(
+          draft.array.findIndex((info) => info.id === id),
+          1
+        );
+      })
+    );
+  }, []);
 
   return (
     <div>
