@@ -1,5 +1,7 @@
 import React, { useRef, useCallback, useState } from "react";
+import { produce } from "immer";
 
+// 11.1.2 immer를 사용하지 않고 불변성 유지
 const App = () => {
   const nextId = useRef(1);
   const [form, setForm] = useState({ name: "", username: "" });
@@ -12,10 +14,13 @@ const App = () => {
   const onChange = useCallback(
     (e) => {
       const { name, value } = e.target;
-      setForm({
-        ...form,
-        [name]: [value],
-      });
+      setForm(
+        produce(form, (draft) => {
+          // ...form,
+          // [name]: [value],
+          draft[name] = value;
+        })
+      );
     },
     [form]
   );
@@ -31,10 +36,13 @@ const App = () => {
       };
 
       // array에 새 항목 등록
-      setData({
-        ...data,
-        array: data.array.concat(info),
-      });
+      setData(
+        produce(data, (draft) => {
+          // ...data,
+          // array: data.array.concat(info),
+          draft.array.push(info);
+        })
+      );
 
       // form 초기화
       setForm({
@@ -49,10 +57,16 @@ const App = () => {
   // 항목을 삭제하는 함수
   const onRemove = useCallback(
     (id) => {
-      setData({
-        ...data,
-        array: data.array.filter((info) => info.id !== id),
-      });
+      setData(
+        // ...data,
+        // array: data.array.filter((info) => info.id !== id),
+        produce(data, (draft) => {
+          draft.array.splice(
+            draft.array.findIndex((info) => info.id === id),
+            1
+          );
+        })
+      );
     },
     [data]
   );
