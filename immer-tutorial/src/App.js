@@ -53,6 +53,7 @@ const App = () => {
   );
 
   // 항목을 삭제하는 함수
+  // 12.1.5 useState의 함수형 업데이트와 immer 함께 쓰기
   const onRemove = useCallback((id) => {
     setData(
       // ...data,
