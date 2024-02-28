@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Routes, Link } from "react-router-dom";
 import About from "./About";
 import Home from "./Home";
+import Profile from "./Profile";
 // 13.2.4 Route 컴포넌트로 특정 주소에 컴포넌트 연결
 const App = () => {
   return (
@@ -14,11 +15,19 @@ const App = () => {
         <li>
           <Link to="/about">소개</Link>
         </li>
+        <li>
+          <Link to="/profile/velopert">velopert 프로필</Link>
+        </li>
+        <li>
+          <Link to="/profile/gildong">gildong 프로필</Link>
+        </li>
       </ul>
       <hr />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route path="/info" element={<About />} />
+        <Route path="/profile/:username" element={<Profile />} />
       </Routes>
     </div>
   );
