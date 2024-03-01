@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, Routes, Route } from "react-router-dom";
 import Profile from "./Profile";
-
+//13.5 서브 라우트
 const Profiles = () => {
   return (
     <div>
