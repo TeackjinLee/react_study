@@ -13,9 +13,7 @@ const data = {
   },
 };
 
-const Profile = ({ match }) => {
-  console.log("sss1");
-  console.log(useParams());
+const Profile = () => {
   const { username } = useParams();
   const profile = data[username];
   console.log("sss");
