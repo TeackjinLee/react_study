@@ -1,5 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+import WithRouterSample from "./WithRouterSample";
 
 // 13.4.1 URL파라미터 | 예시: /profile/velopert
 const data = {
@@ -27,6 +28,7 @@ const Profile = () => {
         {username}({profile.name})
       </h3>
       <p>{profile.description}</p>
+      <WithRouterSample />
     </div>
   );
 };

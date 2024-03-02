@@ -1,7 +1,6 @@
 import React from "react";
 import { Link, Routes, Route } from "react-router-dom";
 import Profile from "./Profile";
-import WithRouterSample from "./WithRouterSample";
 //13.5 서브 라우트
 const Profiles = () => {
   return (
@@ -19,7 +18,6 @@ const Profiles = () => {
         <Route path="/" element="유저를 선택해주세요" />
         <Route path=":username" element={<Profile />} />
       </Routes>
-      <WithRouterSample />
     </div>
   );
 };
