@@ -10,7 +10,8 @@ const App = () => {
   const onClick = async () => {
     try {
       const response = await axios.get(
-        'https://jsonplaceholder.typicode.com/todos/1',
+        // 14.3 newsapi API 키 발급받기
+        'https://newsapi.org/v2/top-headlines?country=kr&apiKey=149add35895d45fdbe245b246db0daeb',
       );
       setData(response.data);
     } catch (e) {
@@ -28,11 +29,7 @@ const App = () => {
         <button onClick={onClick}>불러오기</button>
       </div>
       {data && (
-        <textarea
-          rows={7}
-          value={JSON.stringify(data, null, 2)}
-          readOnly={true}
-        />
+        <textarea rows={7} defaultValue={JSON.stringify(data, null, 2)} />
       )}
     </div>
   );
