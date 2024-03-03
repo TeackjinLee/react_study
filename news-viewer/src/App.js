@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 // import axios from 'axios';
 import NewsList from './components/NewList';
+import Categories from './components/categories';
+
 // 14.2 axios로 API 호출해서 데이터 받아 오기
 /* 
 axios는 현재 가장 많이 사용되고 있는 자바스크립스 HTTP 클라이언트
@@ -36,7 +38,16 @@ const App = () => {
   // );
 
   // 14.4 뉴스 뷰어 UI 만들기
-  return <NewsList />;
+  const [category, setCategory] = useState('all');
+  console.log(category);
+  const onSelect = useCallback((category) => setCategory(category), []);
+  console.log(onSelect);
+  return (
+    <>
+      <Categories category={category} onSelect={onSelect} />
+      <NewsList category={category} />
+    </>
+  );
 };
 
 export default App;
