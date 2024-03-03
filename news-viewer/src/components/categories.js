@@ -12,7 +12,7 @@ const categories = [
   },
   {
     name: 'entertainment',
-    text: '엔터테이먼트',
+    text: '엔터테인먼트',
   },
   {
     name: 'health',
@@ -52,7 +52,7 @@ const Category = styled.div`
   }
 
   ${(props) =>
-    props.active &&
+    props.$active &&
     css`
       font-weight: 600;
       border-bottom: 2px solid #22b8cf;
@@ -73,7 +73,7 @@ const Categories = ({ onSelect, category }) => {
       {categories.map((c) => (
         <Category
           key={c.name}
-          active={category === c.name}
+          $active={category === c.name}
           onClick={() => onSelect(c.name)}
         >
           {c.text}

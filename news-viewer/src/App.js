@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 // import axios from 'axios';
 import NewsList from './components/NewList';
-import Categories from './components/categories';
+import Categories from './components/Categories';
 
 // 14.2 axios로 API 호출해서 데이터 받아 오기
 /* 
@@ -39,7 +39,6 @@ const App = () => {
 
   // 14.4 뉴스 뷰어 UI 만들기
   const [category, setCategory] = useState('all');
-  console.log(category);
   const onSelect = useCallback((category) => setCategory(category), []);
   console.log(onSelect);
   return (
