@@ -8,6 +8,7 @@ import HistorySample from "./HistorySample";
 // 13.2.4 Route 컴포넌트로 특정 주소에 컴포넌트 연결
 const App = () => {
   const { pathname } = useLocation(); // 추가
+  console.log(pathname);
   return (
     // 13.2.5 Link 컴포넌트를 사용하여 다른 주소로 이동하기
     <div>

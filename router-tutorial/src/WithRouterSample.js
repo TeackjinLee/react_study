@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
-//13.6.2 withRouter
+// 13.6.2 withRouter
 const WithRouterSample = () => {
   const params = useParams();
   const location = useLocation();
