@@ -26,6 +26,7 @@ const NewsListBlock = styled.div`
 const NewsList = ({ category }) => {
   const [articles, setArticles] = useState(null);
   const [loading, setLoading] = useState(false);
+  console.log(category);
   // 14.5 데이터 연동하기
   useEffect(() => {
     // async를 사용하는 함수 따로 선언

@@ -1,18 +1,17 @@
 import React from 'react';
 import Categories from '../components/Categories';
-import NewsList from '../components/NewList';
+import NewsList from '../components/NewsList';
 import { useParams } from 'react-router-dom';
+// 14.7.2 NewsPage 생성
+const NewsPage = () => {
+  const params = useParams();
+  const category = params.category || 'all';
+  console.log(category);
 
-const NewsPage = ({ match }) => {
-  // 카테고리가 선택되지 않았으면 기본값 all로 사용
-  //   const category = match.params.category || 'all';
-  const { category } = useParams();
-  const selectCategory = category || 'all';
-  console.log(selectCategory);
   return (
     <>
       <Categories />
-      <NewsList category={selectCategory} />
+      <NewsList category={category} />
     </>
   );
 };

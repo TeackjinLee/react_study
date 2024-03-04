@@ -53,7 +53,8 @@ const App = () => {
   // 14.7.2 NewsPage 생성
   return (
     <Routes>
-      <Route path="/:cateogry?" element={<NewsPage />} />
+      <Route path="/" element={<NewsPage />} />
+      <Route path="/:category" element={<NewsPage />} />
     </Routes>
   );
 };
