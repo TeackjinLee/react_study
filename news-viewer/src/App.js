@@ -1,7 +1,9 @@
-import React, { useState, useCallback } from 'react';
+import React from 'react';
 // import axios from 'axios';
-import NewsList from './components/NewList';
-import Categories from './components/Categories';
+// import NewsList from './components/NewList';
+// import Categories from './components/Categories';
+import { Route, Routes } from 'react-router-dom';
+import NewsPage from './pages/NewsPage';
 
 // 14.2 axios로 API 호출해서 데이터 받아 오기
 /* 
@@ -38,14 +40,21 @@ const App = () => {
   // );
 
   // 14.4 뉴스 뷰어 UI 만들기
-  const [category, setCategory] = useState('all');
-  const onSelect = useCallback((category) => setCategory(category), []);
-  console.log(onSelect);
+  // const [category, setCategory] = useState('all');
+  // const onSelect = useCallback((category) => setCategory(category), []);
+  // console.log(onSelect);
+  // return (
+  //   <>
+  //     <Categories category={category} onSelect={onSelect} />
+  //     <NewsList category={category} />
+  //   </>
+  // );
+
+  // 14.7.2 NewsPage 생성
   return (
-    <>
-      <Categories category={category} onSelect={onSelect} />
-      <NewsList category={category} />
-    </>
+    <Routes>
+      <Route path="/:cateogry?" element={<NewsPage />} />
+    </Routes>
   );
 };
 
