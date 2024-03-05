@@ -71,6 +71,7 @@ function Categories() {
     //카테고리 wrap
     <CategoriesBlock>
       {/* map 메서드로 각 카테고리들(NavLink)을 생성 */}
+      {/* 14.7.3 Categories에서 NavLink 사용하기 */}
       {categories.map((c) => (
         //key에는 고유한 이름이 들어가도록 c.name을 쓴다
         <Category
