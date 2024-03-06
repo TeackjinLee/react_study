@@ -2,6 +2,7 @@ import "./App.css";
 import ColorBox from "./components/ColorBox";
 // import ColorContext from "./contexts/color";
 import { ColorProvider } from "./contexts/color";
+import SelectColors from "./components/SelectColors";
 
 const App = () => {
   return (
@@ -14,8 +15,10 @@ const App = () => {
     //     <ColorBox />
     //   </div>
     // </ColorContext.Provider>
+    // 15.3.2 새로워진 Context를 프로젝트에 반영하기
     <ColorProvider>
       <div>
+        <SelectColors />
         <ColorBox />
       </div>
     </ColorProvider>
