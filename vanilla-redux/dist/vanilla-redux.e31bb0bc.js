@@ -144,6 +144,12 @@ var decrease = function decrease() {
     type: DECREASE
   };
 };
+
+// 16.2.5 초깃값 설정
+var initialState = {
+  toggle: false,
+  counter: 0
+};
 },{}],"../../../../.nvm/versions/node/v20.11.0/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
