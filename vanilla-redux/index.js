@@ -1,3 +1,5 @@
+import { createStore } from "redux";
+
 // 16.2.3 DOM 레퍼런스 만들기
 const divToggle = document.querySelector(".toggle");
 const counter = document.querySelector("h1");
@@ -43,3 +45,34 @@ function reducer(state = initialState, action) {
       return state;
   }
 }
+// 16.2.7 스토어 만들기
+const store = createStore(reducer);
+
+// 16.2.8 render 함수 만들기
+const render = () => {
+  const state = store.getState();
+  // 토글 처리
+  if (state.toggle) {
+    divToggle.classList.add("active");
+  } else {
+    divToggle.classList.remove("active");
+  }
+  // 카운터 처리
+  counter.innerText = state.counter;
+};
+
+render();
+store.subscribe(render);
+
+// 16.2.10 액션 발생시키기
+divToggle.onclick = () => {
+  store.dispatch(toggleSwitch());
+};
+
+btnIncrease.onclick = () => {
+  store.dispatch(increase(1));
+};
+
+btnDecrease.onclick = () => {
+  store.dispatch(decrease());
+};
