@@ -118,10 +118,32 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"index.js":[function(require,module,exports) {
-var divToggle = document.querySelector("./toggle");
+// 16.2.3 DOM 레퍼런스 만들기
+var divToggle = document.querySelector(".toggle");
 var counter = document.querySelector("h1");
 var btnIncrease = document.querySelector("#increase");
 var btnDecrease = document.querySelector("#decrease");
+
+// 16.2.4 액션 타입과 액션 생성 함수 정의
+var TOGGLE_SWITCH = "TOGGLE_SWITCH";
+var INCREASE = "INCREASE";
+var DECREASE = "DECREASE";
+var toggleSwitch = function toggleSwitch() {
+  return {
+    type: TOGGLE_SWITCH
+  };
+};
+var increase = function increase(difference) {
+  return {
+    type: INCREASE,
+    difference: difference
+  };
+};
+var decrease = function decrease() {
+  return {
+    type: DECREASE
+  };
+};
 },{}],"../../../../.nvm/versions/node/v20.11.0/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -147,7 +169,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59463" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62361" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
