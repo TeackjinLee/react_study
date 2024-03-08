@@ -551,7 +551,6 @@ var initialState = {
   toggle: false,
   counter: 0
 };
-
 // 16.2.6 리듀서 함수 정의
 // state가 undefined일 때는 initialState를 기본값으로 사용
 function reducer() {
@@ -629,7 +628,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62361" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62499" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
