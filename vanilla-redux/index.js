@@ -75,3 +75,4 @@ btnIncrease.onclick = () => {
 btnDecrease.onclick = () => {
   store.dispatch(decrease());
 };
+// 복습완료
