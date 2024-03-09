@@ -2,6 +2,7 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { createStore } from 'redux';
+import { Provider } from 'react-redux';
 import './index.css';
 import App from './App';
 import rootReducer from './modules';
@@ -11,4 +12,8 @@ const store = createStore(rootReducer);
 
 const container = document.getElementById('root');
 const root = createRoot(container); // TypeScript 사용 시 createRoot(container!)로 적용
-root.render(<App />);
+root.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+);
