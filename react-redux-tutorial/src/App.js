@@ -1,11 +1,12 @@
 import React from 'react';
-import Counter from './compontes/Counter';
+// import Counter from './compontes/Counter';
 import Todos from './compontes/Todos';
+import CounterContainer from './compontes/CounterContainer';
 
 const App = () => {
   return (
     <div>
-      <Counter number={0}>리액트</Counter>
+      <CounterContainer />
       <hr />
       <Todos />
     </div>
