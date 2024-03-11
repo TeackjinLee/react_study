@@ -1,8 +1,8 @@
 import React from 'react';
 // import Counter from './compontes/Counter';
 // import Todos from './compontes/Todos';
-import CounterContainer from './compontes/CounterContainer';
-import TodosContainer from './compontes/TodosContainer';
+import CounterContainer from './containers/CounterContainer';
+import TodosContainer from './containers/TodosContainer';
 
 const App = () => {
   return (
