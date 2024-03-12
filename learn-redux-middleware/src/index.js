@@ -7,6 +7,7 @@ import App from "./App";
 import rootReducer from "./modules";
 // import loggerMiddleware from "./lib/loggerMiddleware";
 import { createLogger } from "redux-logger";
+// 18.3.1.2 미들웨어 적용하기
 import { thunk } from "redux-thunk";
 
 const logger = createLogger();

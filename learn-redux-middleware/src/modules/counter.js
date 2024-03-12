@@ -1,3 +1,4 @@
+// 18.3.1.3 Thunk 생성 함수 만들기
 import { createAction, handleActions } from "redux-actions";
 
 const INCREASE = "counter/INCREASE";
