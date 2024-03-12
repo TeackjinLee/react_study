@@ -1,3 +1,4 @@
+// 18.2.1 미들웨어 만들기
 const loggerMiddleware = (store) => (next) => (action) => {
   // 미들웨어 기본구조
   console.group(action && action.type); // 액션 타입으로 log를 그룹화함
