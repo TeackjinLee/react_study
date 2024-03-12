@@ -71,4 +71,5 @@ const TodosContainer = () => {
 //   },
 // )(TodosContainer);
 
+// 17.7.6 connect 함수와의 주요 차이점
 export default React.memo(TodosContainer);

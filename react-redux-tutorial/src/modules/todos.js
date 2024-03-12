@@ -101,6 +101,7 @@ const todos = handleActions(
       //   ...state,
       //   todos: state.todos.concat(todo),
       // }),
+      // 17.6.2 immer
       produce(state, (draft) => {
         draft.todos.push(todo);
       }),
