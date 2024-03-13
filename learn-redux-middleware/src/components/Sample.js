@@ -1,6 +1,8 @@
 import React from "react";
 
 const Sample = ({ loadingPost, loadingUsers, post, users }) => {
+  console.log("#@@#11312");
+  console.log(users);
   return (
     <div>
       <section>

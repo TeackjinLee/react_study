@@ -34,6 +34,14 @@ export const getPost = (id) => async (dispatch) => {
 export const getUsers = () => async (dispatch) => {
   dispatch({ type: GET_USERS });
   try {
+    const response = await api.getUsers();
+    console.log("###");
+    console.log(response.data);
+    console.log("###$@");
+    dispatch({
+      type: GET_USERS_SUCCESS,
+      payload: response.data,
+    });
   } catch (e) {
     dispatch({
       type: GET_USERS_FAILURE,
@@ -65,11 +73,19 @@ const sample = handleActions(
         GET_POST: true, // 요청 시작
       },
     }),
-    [GET_POST_SUCCESS]: (state, actions) => ({
+    [GET_POST_SUCCESS]: (state, action) => ({
       ...state,
       loading: {
         ...state.loading,
         GET_POST: false, // 요청 완료
+      },
+      post: action.payload,
+    }),
+    [GET_POST_FAILURE]: (state, action) => ({
+      ...state,
+      loading: {
+        ...state.loading,
+        GET_POST: false,
       },
     }),
     [GET_USERS]: (state) => ({
