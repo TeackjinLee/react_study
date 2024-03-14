@@ -35,9 +35,7 @@ export const getUsers = () => async (dispatch) => {
   dispatch({ type: GET_USERS });
   try {
     const response = await api.getUsers();
-    console.log("###");
-    console.log(response.data);
-    console.log("###$@");
+
     dispatch({
       type: GET_USERS_SUCCESS,
       payload: response.data,
