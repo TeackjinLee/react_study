@@ -1,7 +1,8 @@
 // 18.3.1.3 Thunk 생성 함수 만들기
 import { createAction, handleActions } from "redux-actions";
 // 18.3.2.2 비동기 카운터 만들기
-import { delay, put, takeEvery, takeLatest } from "redux-saga/effects";
+// 18.3.2.5 알아두면 유용한 기능들
+import { delay, put, takeEvery, takeLatest, select } from "redux-saga/effects";
 
 const INCREASE = "counter/INCREASE";
 const DECREASE = "counter/DECREASE";
@@ -30,8 +31,10 @@ export const increaseAsync = createAction(INCREASE_ASYNC, () => undefined);
 export const decreaseAsync = createAction(DECREASE_ASYNC, () => undefined);
 
 function* increaseSaga() {
-  yield delay(1000);
-  yield put(increase());
+  yield delay(1000); // 1초를 기다립니다.
+  yield put(increase()); // 특정 액션을 디스패치합니다.
+  const number = yield select((state) => state.counter); // state는 스토어 상태를 의미함
+  console.log(`현재 값은 ${number}입니다`);
 }
 
 function* decreaseSaga() {
