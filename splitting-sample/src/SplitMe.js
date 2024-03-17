@@ -1,6 +1,6 @@
 import React from "react";
 const SplitMe = () => {
-  return <dvi>SplitMe</dvi>;
+  return <div>SplitMe</div>;
 };
 
 export default SplitMe;
