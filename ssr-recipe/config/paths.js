@@ -69,6 +69,9 @@ module.exports = {
   appWebpackCache: resolveApp('node_modules/.cache'),
   appTsBuildInfoFile: resolveApp('node_modules/.cache/tsconfig.tsbuildinfo'),
   swSrc: resolveModule(resolveApp, 'src/service-worker'),
+  // 20.3.2 서버 사이드 렌더링 전용 웹팩 환경 설정 작성하기
+  ssrIndexJs: resolveApp('src/index/server.js'), // 서버 사이드 렌더링 엔트리
+  ssrBuild: resolveApp('dist');
   publicUrlOrPath,
 };
 
