@@ -31,11 +31,11 @@ module.exports = {
           // 기존 webpack.config.js 참고하여 작성
           {
             test: /\.(js|mjs|jsx|ts|tsx)$/,
-            include: path.appSrc,
+            include: paths.appSrc,
             loader: require.resolve("babel-loader"),
             options: {
               customize: require.resolve(
-                "babel-preset-react--app/webpack-overrides"
+                "babel-preset-react-app/webpack-overrides"
               ),
               presets: [
                 [
@@ -52,7 +52,7 @@ module.exports = {
                     loaderMap: {
                       svg: {
                         ReactComponent:
-                          "@svgr/webpack?-svgo, +titleProp, +ref![path]",
+                          "@svgr/webpack?-svgo,+titleProp,+ref![path]",
                       },
                     },
                   },
