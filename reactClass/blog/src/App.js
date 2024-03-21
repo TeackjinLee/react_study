@@ -14,11 +14,24 @@ function App() {
   // let titleChange = () => {
   //   글제목변경(글제목.with(0, "여자코트추천"));
   // };
+  // let titleChange = () => {
+  //   글제목변경(
+  //     글제목.map((item) => (item === "남자코트추천" ? "여자코트추천" : item))
+  //   );
+  // };
+
+  // let titleChange = () => {
+  //   let newArray = [...글제목];
+  //   newArray[0] = "여자코트추천";
+  //   글제목변경(newArray);
+  // };
+
   let titleChange = () => {
-    글제목변경(
-      글제목.map((item) => (item === "남자코트추천" ? "여자코트추천" : item))
-    );
+    let newArray = [...글제목];
+    newArray.sort();
+    글제목변경(newArray);
   };
+
   console.log(글제목);
 
   let [count, countState] = useState(0);
@@ -54,6 +67,20 @@ function App() {
         <p>2월 17일 발행</p>
         <hr />
       </div>
+
+      <Modal />
+    </div>
+  );
+}
+
+// component
+// 1. 대문자로 시작 2. return 안에 있는건 태그하나로 묶어야함
+function Modal(props) {
+  return (
+    <div className="modal">
+      <h2>제목</h2>
+      <p>날짜</p>
+      <p>상세내용</p>
     </div>
   );
 }
