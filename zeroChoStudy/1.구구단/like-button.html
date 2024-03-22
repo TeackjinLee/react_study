@@ -13,11 +13,12 @@
 <script type="text/babel">
     'use strict';
     // 컴포넌트는 무조건 대문자로 시작
+    /**
     class LikeButton extends React.Component {
-        // constructor(props) {
-        //     super(props);
-        //     this.state = {liked: false};
-        // }
+        constructor(props) {
+            super(props);
+            this.state = {liked: false};
+        }
         
         state = {liked: false};
         
@@ -38,7 +39,19 @@
             )
 
         }
-    } 
+    }
+    */
+
+    function LikeButton() { // 함수 컴포넌트
+            const [liked, setLiked] = React.useState(false);
+            if (liked) {
+                return 'You liked this.';
+            }
+            
+            return (
+                <button onClick={() => {setLiked(true);}}>Like</button>
+            ) 
+        }
 </script>
 <script type="text/babel">
     // ReactDOM.render(<LikeButton/>, document.querySelector('#root')); // React 17버전 코드
