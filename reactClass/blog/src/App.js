@@ -68,7 +68,9 @@ function App() {
         <hr />
       </div>
 
-      <Modal />
+      <Modal name={글제목[0]} />
+      <Modal name={글제목[1]} />
+      <Modal name={글제목[2]} />
     </div>
   );
 }
@@ -78,7 +80,7 @@ function App() {
 function Modal(props) {
   return (
     <div className="modal">
-      <h2>제목</h2>
+      <h2>{props.name}</h2>
       <p>날짜</p>
       <p>상세내용</p>
     </div>
