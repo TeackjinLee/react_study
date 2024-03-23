@@ -1,4 +1,5 @@
 const React = require('react');
 const ReactDom = require('react-dom');
+import WordRelay from './wordRelay';
 
-ReactDom.render(<GuGuDan />);
+ReactDom.render(<WordRelay />, document.querySelector('#root'));
