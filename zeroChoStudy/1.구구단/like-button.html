@@ -13,7 +13,7 @@
 <script type="text/babel">
     'use strict';
     // 컴포넌트는 무조건 대문자로 시작
-    /**
+    /** 
     class LikeButton extends React.Component {
         constructor(props) {
             super(props);
@@ -43,7 +43,7 @@
     */
 
     function LikeButton() { // 함수 컴포넌트
-            const [liked, setLiked] = React.useState(false);
+            const [liked, setLiked] = React.useState(false);    // 구조 분해
             if (liked) {
                 return 'You liked this.';
             }
