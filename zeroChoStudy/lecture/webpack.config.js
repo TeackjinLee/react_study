@@ -1,4 +1,5 @@
 const path = require("path");
+const RefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
 
 module.exports = {
   name: "word-replay-setting",
@@ -31,14 +32,23 @@ module.exports = {
             ],
             "@babel/preset-react",
           ],
-          plugins: ["@babel/plugin-proposal-class-properties"],
+          plugins: [
+            "@babel/plugin-proposal-class-properties",
+            "react-refresh/babel",
+          ],
         },
       },
     ],
   },
-
+  plugins: [new RefreshWebpackPlugin()],
   output: {
     path: path.join(__dirname, "dist"), // __dirname 현재폴더 // C:\users\zerocho\webstorm\react-webgame... 컴퓨터마다 다름 dist가 있는 위치
     filename: "app.js",
+    publicPath: "/dist/",
+  },
+  devServer: {
+    devMiddleware: { publicPath: "/dist/" },
+    static: { directory: path.resolve(__dirname) },
+    hot: true,
   },
 };
