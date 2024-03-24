@@ -18,7 +18,19 @@ module.exports = {
         test: /\.jsx?/,
         loader: "babel-loader",
         options: {
-          presets: ["@babel/preset-env", "@babel/preset-react"],
+          presets: [
+            [
+              "@babel/preset-env",
+              {
+                targets: {
+                  // https://github/browserslist
+                  browsers: ["> 1% in KR"], //browserslist에서 확인가능
+                },
+                debug: true,
+              },
+            ],
+            "@babel/preset-react",
+          ],
           plugins: ["@babel/plugin-proposal-class-properties"],
         },
       },
