@@ -4,4 +4,6 @@ class NumberBaseball extends Component {
 
 }
 
-export default NumberBaseball;
+export const hello = 'hello'; // import {hello};
+
+export default NumberBaseball; // import NumberBaseball;
