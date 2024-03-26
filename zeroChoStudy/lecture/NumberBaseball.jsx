@@ -63,8 +63,6 @@ class NumberBaseball extends Component {
     };
 
     onChangeInput = (e) => {
-        console.log(this.state.answer);
-        console.log(e.target.value);
         this.setState({
             value: e.target.value,
         });
