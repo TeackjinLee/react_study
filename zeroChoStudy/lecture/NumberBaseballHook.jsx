@@ -20,12 +20,10 @@ const NumberBaseball = () => {
     const onSubmitForm = (e) => {
         e.preventDefault();
         if (value === answer.join('')) {
-            this.setState((prevState) => {
-                setResult('홈런');
-                setTries(
-                    [...this.state.tries, {try: this.state.value, result: '홈런!'}],
-                );
-            })
+            setResult('홈런');
+            setTries((prevState) => 
+                [...prevState, {try: value, result: '홈런!'}]
+            );
             alert('게임을 다시 시작합니다!');
             setValue('');
             setAnswer(getNumbers);
