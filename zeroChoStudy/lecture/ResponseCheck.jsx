@@ -1,39 +1,33 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 
 const ResponseCheck = () => {
-    const [state, setState] = useState('');
-    const [message, setMessage] = useState('');
+    const [state, setState] = useState('waiting');
+    const [message, setMessage] = useState('클릭해서 시작하세요.');
     const [result, setResult] = useState([]);
+    const timeout = useRef(null);
+    const startTime = useRef(0);
+    const endTime = useRef(0);
 
     const onClickScreen = () => {
         if (state === 'waiting') {
-            setState('ready');
-            setMessage('초록색이 되면 클릭하세요');
-
-        this.timeout = setTimeout(() => {
+            timeout.current = setTimeout(() => {
                 setState('now');
                 setMessage('지금 클릭');
-
-                let startTime = new Date();
+                startTime.current = new Date();
             }, Math.floor(Math.random(Math.random() * 1000) + 2000)); // 2초후 랜덤 반응
+            setState('ready');
+            setMessage('초록색이 되면 클릭하세요');
         } else if (state === 'ready') { // 성급하게 클릭
-            clearTimeout(this.timeout);
+            clearTimeout(timeout.current);
             setState('waiting');
             setMessage('너무 성급하시군요! 초록색이 된 후에 클릭하세요.');
         } else if (state === 'now') {   // 반응속도 체크
-            let endTime = new Date();
+            endTime.current = new Date();
             setState('waiting');
             setMessage('클릭해서 시작하세요.');
             setResult((prevState) => {
-                [...prevState.result, ]
+                return [...prevState, endTime.current -  startTime.current]
             });
-            this.setState((prevState) => {
-                return {
-                    state: 'waiting',
-                    message: '클릭해서 시작하세요.',
-                    result: [...prevState.result, endTime - startTime],
-                }
-            })
         }
     };
 
@@ -42,14 +36,17 @@ const ResponseCheck = () => {
     }
 
     const renderAverage = () => {
-        return result.length === 0 
-            ? null
-            : <>
-                <div>평균 시간: {result.reduce((a, c) => a + c) / result.length}ms</div>
-                <button onClick={onReset}>리셋</button>
-            </>
-    };
-
+        console.log('sfds');
+        console.log(result.length);
+        console.log('sfds');
+        return result.length === 0
+          ? null
+          : <>
+            <div>평균 시간: {result.reduce((a, c) => a + c) / result.length}ms</div>
+            <button onClick={onReset}>리셋</button>
+          </>
+      };
+    
     return(
         <>
             <div
