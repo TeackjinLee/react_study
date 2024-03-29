@@ -10,7 +10,7 @@ class Test extends PureComponent {
     //     if (this.state.counter !== nextState.counter) {
     //         return true;
     //     }
-    //     return false;
+    //     return false; 
     // }
 
     onClick = () => {
