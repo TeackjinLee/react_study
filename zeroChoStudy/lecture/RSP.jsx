@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import useInterval from './useInterval';
 
 // 클래스의 경우 -> constructor -> render -> ref -> componentDidMount
 // (setState/props 바뀔때) -> shouldComponentUpdate(true) -> render -> componentDidUpdate
@@ -26,16 +27,17 @@ const RSP = () => {
   const [result, setResult] = useState('');
   const [imgCoord, setImgCoord] = useState(rspCoords.바위);
   const [score, setScore] = useState(0);
-  const interval = useRef();
+  // const interval = useRef();
+  const [isRunning, setIsRunning] = useState(true);
 
-  useEffect(() => { // componentDidMount, componentDidUpdate 역할(1대1 대응은 아님)
-    console.log('다시실행');
-    interval.current = setInterval(changeHand, 100);
-    return () => { // componentWillUnmount 역할
-      console.log('종료');
-      clearInterval(interval.current);
-    }
-  }, [imgCoord]);
+  // useEffect(() => { // componentDidMount, componentDidUpdate 역할(1대1 대응은 아님)
+  //   console.log('다시실행');
+  //   interval.current = setInterval(changeHand, 100);
+  //   return () => { // componentWillUnmount 역할
+  //     console.log('종료');
+  //     clearInterval(interval.current);
+  //   }
+  // }, [imgCoord]);
 
   const changeHand = () => {
     if (imgCoord === rspCoords.바위) {
@@ -47,8 +49,11 @@ const RSP = () => {
     }
   };
 
+  useInterval(changeHand, isRunning ? 100 : null);
+
   const onClickBtn = (choice) => () => {
-    clearInterval(interval.current);
+    // clearInterval(interval.current);
+    setIsRunning(false);
     const myScore = scores[choice];
     const cpuScore = scores[computerChoice(imgCoord)];
     const diff = myScore - cpuScore;
@@ -63,7 +68,8 @@ const RSP = () => {
     }
     
     setTimeout(() => {
-        interval.current = setInterval(changeHand, 100);
+        // interval.current = setInterval(changeHand, 100);
+        setIsRunning(true);
     }, 1000);
   };
 
