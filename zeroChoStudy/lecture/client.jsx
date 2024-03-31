@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import RSP from './RSP';
+import Lotto from './Lotto';
 
 ReactDOM.createRoot(document.querySelector('#root')).render(
-    <RSP/>
+    <Lotto/>
 );
