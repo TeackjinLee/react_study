@@ -1,10 +1,23 @@
-import React, {useState, useReducer} from 'react';
+import React, {useReducer, useCallback} from 'react';
 import Table from './Table';
 
 const initialState = {
     winner: '',
     turn: 'O',
-    tableData: [['', '', ''], ['', '', ''], ['', '', '']];
+    tableData: [['', '', ''], ['', '', ''], ['', '', '']],
+};
+
+const SET_WINNER = 'SET_WINNER';
+
+const reducer = (state, action) => {
+    switch(action.type) {
+        case SET_WINNER :
+            // state.winner = action.winner; 이렇게 하면 안됨.
+            return {
+                ...state,   // 얕은 복사를 해야한다.
+                winner: action.winner,
+            }
+    }
 };
 
 const TicTecToe = () => {
@@ -15,10 +28,15 @@ const TicTecToe = () => {
 
     const [state, dispatch] = useReducer(reducer, initialState);
 
+    const onClickTable = useCallback(() => {
+        // dispatch(action);
+        dispatch({type: SET_WINNER, winner: 'O'});
+    },[]);
+
     return (
         <>
-            <Table />
-            {winner && <div>{winner}님의 승리</div>}
+            <Table onClick={onClickTable} tableData={state.tableData}/>
+            {state.winner && <div>{state.winner}님의 승리</div>}
         </>
     );
 }
