@@ -23,7 +23,7 @@ const Lotto = () => {
     const timeouts = useRef([]);
 
     const runTimeouts = () => {
-        console.log('useEffect');
+        console.log('runTimeouts');
         for (let i=0; i<winNumbers.length -1; i++){
             
             timeouts.current[i] = setTimeout(() => {
@@ -39,12 +39,16 @@ const Lotto = () => {
     };
 
     useEffect(() => {
-        console.log('didMount');
+        console.log('useEffect');
         runTimeouts();
+        
+        return () => {
             timeouts.current.forEach((v) => {
-            clearTimeout(v);
-        });
-    },[timeout.current]);
+                clearTimeout(v);
+            });
+        }
+    },[timeouts.current]);
+    // 배열에 요소가 있으면 componentDidMout랑 componentDidUpdate 둘 다 수행
 
 
     const onClickRedo = () => {
