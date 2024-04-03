@@ -16,7 +16,8 @@ function getWinNumbers() {
 const Lotto = () => {
     // useMemo 다시 실행되지 않고 기억할수 있게 해줌
     /*
-        useMemo : 복잡한 함수 결과값을 기억
+        useMemo : 값을 기억
+        usCallback : 함수자체를 기억한다.
         useRef : 일반 값을 기억
     */
     const lottoNumbers = useMemo(() => getWinNumbers(), []);
@@ -43,6 +44,7 @@ const Lotto = () => {
         }, 7000);
     };
 
+    // 배열에 요소가 있으면 componentDidMout랑 componentDidUpdate 둘 다 수행
     useEffect(() => {
         console.log('useEffect');
         runTimeouts();
@@ -53,8 +55,16 @@ const Lotto = () => {
             });
         }
     },[timeouts.current]);
-    // 배열에 요소가 있으면 componentDidMout랑 componentDidUpdate 둘 다 수행
-
+    
+    // componentDidUpdate만, componentDidMout X
+    const mounted = useRef(false);
+    // useEffect(() => {
+    //     if (!mounted.current) {
+    //         mounted.current = true;
+    //     } else {
+    //         // ajax
+    //     }
+    // },[바뀌는값]);
 
     const onClickRedo = useCallback(() => {
         console.log('onClickRedo');
