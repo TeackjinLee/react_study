@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect, useRef, useMemo, useCallback} from 'react';
 import Ball from './Ball';
 
 function getWinNumbers() {
@@ -14,8 +14,13 @@ function getWinNumbers() {
 }
 
 const Lotto = () => {
-
-    const [winNumbers, setWinNumbers] = useState(getWinNumbers());
+    // useMemo 다시 실행되지 않고 기억할수 있게 해줌
+    /*
+        useMemo : 복잡한 함수 결과값을 기억
+        useRef : 일반 값을 기억
+    */
+    const lottoNumbers = useMemo(() => getWinNumbers(), []);
+    const [winNumbers, setWinNumbers] = useState(lottoNumbers);
     const [winBalls, setWinBalls] = useState([]);
     const [bonus, setBonus] = useState(null);
     const [redo, setRedo] = useState(false);
@@ -51,14 +56,15 @@ const Lotto = () => {
     // 배열에 요소가 있으면 componentDidMout랑 componentDidUpdate 둘 다 수행
 
 
-    const onClickRedo = () => {
-        console.log('onClickRedo')
+    const onClickRedo = useCallback(() => {
+        console.log('onClickRedo');
+        console.log(winNumbers);
         setWinNumbers(getWinNumbers());
         setWinBalls([]);
         setBonus(null);
         setRedo(false);
-        timeouts.current = [];
-    };
+        timeouts.current = [];  // useEffect 수행
+    }, [winNumbers]);
 
     return ( 
         <>
@@ -67,7 +73,7 @@ const Lotto = () => {
                 {winBalls.map((v) => <Ball key={v} number={v} />)}
             </div>
             <div>보너스!</div>
-            {bonus && <Ball number={bonus} />}
+            {bonus && <Ball number={bonus} onClick={onClickRedo}/>}
             {redo && <button onClick={redo ? onClickRedo : () => {}}>한 번 더!</button>}
         </>
     );
