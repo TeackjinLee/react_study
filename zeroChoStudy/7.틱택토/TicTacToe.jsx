@@ -4,10 +4,16 @@ import Table from './Table';
 const initialState = {
     winner: '',
     turn: 'O',
-    tableData: [['', '', ''], ['', '', ''], ['', '', '']],
+    tableData: [
+        ['', '', ''], 
+        ['', '', ''], 
+        ['', '', '']
+    ],
 };
 
-const SET_WINNER = 'SET_WINNER';
+export const SET_WINNER = 'SET_WINNER';
+export const CLICK_CELL = 'CLICK_CELL';
+export const CHANGE_TURN = 'CHANGE_TURN';
 
 const reducer = (state, action) => {
     switch(action.type) {
@@ -16,6 +22,19 @@ const reducer = (state, action) => {
             return {
                 ...state,   // 얕은 복사를 해야한다.
                 winner: action.winner,
+            }
+        case CLICK_CELL :
+            const tableData = [...state.tableData];
+            tableData[action.row] = [...tableData[action.row]];
+            tableData[action.row][action.cell] = state.turn;
+            return {
+                ...state,
+                tableData,
+            };
+        case CHANGE_TURN :
+            return {
+                ...state,
+                turn: state.turn === 'O' ? 'X' : 'O',
             }
     }
 };
@@ -35,7 +54,7 @@ const TicTecToe = () => {
 
     return (
         <>
-            <Table onClick={onClickTable} tableData={state.tableData}/>
+            <Table onClick={onClickTable} tableData={state.tableData} dispatch={dispatch}/>
             {state.winner && <div>{state.winner}님의 승리</div>}
         </>
     );
