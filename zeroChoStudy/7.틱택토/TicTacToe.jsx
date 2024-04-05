@@ -1,4 +1,4 @@
-import React, {useReducer, useCallback} from 'react';
+import React, {useReducer, useCallback, useEffect} from 'react';
 import Table from './Table';
 
 const initialState = {
@@ -9,6 +9,7 @@ const initialState = {
         ['', '', ''], 
         ['', '', '']
     ],
+    recentCell:[-1, -1],
 };
 
 export const SET_WINNER = 'SET_WINNER';
@@ -30,6 +31,7 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 tableData,
+                recentCell: [action.row, action.cell],
             };
         case CHANGE_TURN :
             return {
@@ -46,16 +48,28 @@ const TicTecToe = () => {
     // const [tableData, setTableData] = useState([['', '', ''], ['', '', ''], ['', '', '']]);
 
     const [state, dispatch] = useReducer(reducer, initialState);
+    const { tableData, turn, winner, recentCell } = state;
+    // 비동기state에 따라서 뭔가를 처리할때는 useEffect를 사용한다.
+    useEffect(() => {
+        const [row, cell] = recentCell;
+        if (row < 0) {
+            return;
+        };
+        let win = false;
+        
+    },[recentCell]);
+
 
     const onClickTable = useCallback(() => {
         // dispatch(action);
         dispatch({type: SET_WINNER, winner: 'O'});
     },[]);
 
+    
     return (
         <>
-            <Table onClick={onClickTable} tableData={state.tableData} dispatch={dispatch}/>
-            {state.winner && <div>{state.winner}님의 승리</div>}
+            <Table onClick={onClickTable} tableData={tableData} dispatch={dispatch}/>
+            {winner && <div>{winner}님의 승리</div>}
         </>
     );
 }
