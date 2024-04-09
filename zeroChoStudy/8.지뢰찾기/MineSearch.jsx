@@ -22,9 +22,15 @@ export const TableContext = createContext({
 
 const initialState = {
     tableData: [],
+    data: {
+        row: 0,
+        cell: 0,
+        mine: 0,
+    },
     timer: 0,
     result: '',
     halted: true,
+    openedCount: 0,
 }
 
 const planeMine = (row, cell, mine) => {
@@ -67,6 +73,11 @@ const reducer = (state, action) => {
         case START_GAME:
             return {
                 ...state,
+                data: {
+                    row: action.row,
+                    cell: action.cell,
+                    mine: action.mine,
+                },
                 tableData: planeMine(action.row, action.cell, action.mine),
                 halted: false,
             };
@@ -76,6 +87,7 @@ const reducer = (state, action) => {
                 tableData[i] = [...row];
             });
             const checked = [];
+            let opendCount = 0;
             const checkAround = (row, cell) => {
                 console.log(row, cell);
                 if (row < 0 || row >= tableData.length || cell < 0 || cell >= tableData[0].length) {
@@ -89,6 +101,7 @@ const reducer = (state, action) => {
                 } else {
                     checked.push(row + '/' + cell);
                 } // 한 번 연칸은 무시하기
+                opendCount += 1;
                 let around = [
                     tableData[row][cell - 1], tableData[row][cell + 1],
                 ];
@@ -130,11 +143,19 @@ const reducer = (state, action) => {
                 tableData[row][cell] = count;
             };
             
-            
             checkAround(action.row, action.cell);
+            let halted = false;
+            let result = '';
+            if (state.data.row * state.data.cell - state.data.mine === state.openedCount + opendCount) {
+                halted = true;
+                result = '승리하셨습니다!';
+            }
             return {
                 ...state,
                 tableData,
+                openedCount: state.openedCount + opendCount,
+                halted,
+                result,
             }
         }
         case CLICK_MINE: {
