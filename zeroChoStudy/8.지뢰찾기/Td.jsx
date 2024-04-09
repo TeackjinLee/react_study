@@ -1,5 +1,5 @@
 import React, {useCallback, useContext} from 'react';
-import { CODE, TableContext, OPEN_CELL, CLICK_MINE, FLAG_CELL } from './MineSearch';
+import { CODE, TableContext, OPEN_CELL, CLICK_MINE, FLAG_CELL, QUESTION_CELL, NORMALIZE_CELL } from './MineSearch';
 
 const getTdStyle = (code) => {
     switch (code) {
@@ -12,17 +12,17 @@ const getTdStyle = (code) => {
         case CODE.OPENED:
             return {
                 background: 'white',
-            }
-        case QUESTION_MINE:
-        case QUESTION:
+            };
+        case CODE.QUESTION_MINE:
+        case CODE.QUESTION:
             return {
                 background: 'yellow',
-            }
+            };
         case CODE.FLAG_MINE:
         case CODE.FLAG:
             return {
                 background: 'red',
-            }
+            };
         default: 
             return {
                 background: 'white',
@@ -44,7 +44,7 @@ const getTdText = (code) => {
         case CODE.QUESTION:
             return '?';
         default:
-            return '';
+            return code || '';
     }
 }
 
