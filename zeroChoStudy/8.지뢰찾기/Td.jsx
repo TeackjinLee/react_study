@@ -50,9 +50,12 @@ const getTdText = (code) => {
 
 
 const Td = ({rowIndex, cellIndex}) => {
-    const {tableData, dispatch} = useContext(TableContext);
+    const {tableData, dispatch, halted} = useContext(TableContext);
 
     const onClick = useCallback(() => {
+        if (halted) {
+            return;
+        }
         switch (tableData[rowIndex][cellIndex]) {
             case CODE.OPENED:
             case CODE.FLAG_MINE:
@@ -62,16 +65,21 @@ const Td = ({rowIndex, cellIndex}) => {
                 return;
             case CODE.NORMAL:
                 dispatch({type:OPEN_CELL, row: rowIndex, cell: cellIndex});
+                return;
             case CODE.MINE:
-                dispatch({type:CLICK_MINE, row: rowIndex, cell: cellIndex}); 
+                dispatch({type:CLICK_MINE, row: rowIndex, cell: cellIndex});
+                return;
             default:
                 return;
         }
         
-    },[tableData[rowIndex][cellIndex]]);
+    },[tableData[rowIndex][cellIndex], halted]);
 
     const onRightClickTd = useCallback((e) => {
         e.preventDefault();
+        if(halted) {
+            return;
+        }
         switch (tableData[rowIndex][cellIndex]) {
             case CODE.NORMAL:
             case CODE.MINE:
@@ -88,7 +96,7 @@ const Td = ({rowIndex, cellIndex}) => {
             default:
                 return;
         }
-    }, [tableData[rowIndex][cellIndex]]);
+    }, [tableData[rowIndex][cellIndex], halted]);
 
     return (
         <td

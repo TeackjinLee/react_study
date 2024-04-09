@@ -92,7 +92,7 @@ const reducer = (state, action) => {
         case FLAG_CELL: {
             const tableData = [...state.tableData];
             tableData[action.row] = [...state.tableData[action.row]];
-            if (tableData[action.row][action.cell] = CODE.MINE) {
+            if (tableData[action.row][action.cell] === CODE.MINE) {
                 tableData[action.row][action.cell] = CODE.FLAG_MINE;
             } else {
                 tableData[action.row][action.cell] = CODE.FLAG;
@@ -105,7 +105,7 @@ const reducer = (state, action) => {
         case QUESTION_CELL: {
             const tableData = [...state.tableData];
             tableData[action.row] = [...state.tableData[action.row]];
-            if (tableData[action.row][action.cell] = CODE.FLAG_MINE) {
+            if (tableData[action.row][action.cell] === CODE.FLAG_MINE) {
                 tableData[action.row][action.cell] = CODE.QUESTION_MINE;
             } else {
                 tableData[action.row][action.cell] = CODE.QUESTION;
@@ -118,7 +118,7 @@ const reducer = (state, action) => {
         case NORMALIZE_CELL: {
             const tableData = [...state.tableData];
             tableData[action.row] = [...state.tableData[action.row]];
-            if (tableData[action.row][action.cell] = CODE.QUESTION_MINE) {
+            if (tableData[action.row][action.cell] === CODE.QUESTION_MINE) {
                 tableData[action.row][action.cell] = CODE.MINE;
             } else {
                 tableData[action.row][action.cell] = CODE.NORMAL;
@@ -137,14 +137,14 @@ const MineSearch = () => {
     const [state, dispatch] = useReducer(reducer, initialState);
     const {tableData, halted, timer, result} = state;
     
-    const value = useMemo(() => ({ tableData: state.tableData, halted: state.halted, dispatch }), [state.tableData, state.halted]);
+    const value = useMemo(() => ({ tableData: tableData, halted: halted, dispatch }), [tableData, halted]);
 
     return (
         <TableContext.Provider value={value}>
             <Form/>
-            <div>{state.timer}</div>
+            <div>{timer}</div>
             <Table />
-            <div>{state.result}</div>
+            <div>{result}</div>
         </TableContext.Provider>
     )
 };
