@@ -61,14 +61,15 @@ function todos(state = initialState, action) {
     case TOGGLE:
       return {
         ...state,
-        todos: state.map((todo) =>
+        todos: state.todos.map((todo) =>
           todo.id === action.id ? { ...todo, done: !todo.done } : todo
         ),
       };
     case REMOVE:
+      console.log(state.todos);
       return {
         ...state,
-        todos: state.todos.filter((todo) => todo.id !== id),
+        todos: state.todos.filter((todo) => todo.id !== action.id),
       };
     default:
       return state;
