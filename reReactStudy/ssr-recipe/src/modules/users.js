@@ -45,6 +45,9 @@ export const getUsers = () => async (dispatch) => {
   }
 };
 
+const getUserById = (id) =>
+  axios.get(`https://jsonplaceholder.typicode.com/users/${id}`);
+
 function* getUserSaga(action) {
   try {
     const response = yield call(getUserById, action.payload);
@@ -54,7 +57,7 @@ function* getUserSaga(action) {
   }
 }
 
-export function* userSaga() {
+export function* usersSaga() {
   yield takeEvery(GET_USER, getUserSaga);
 }
 
