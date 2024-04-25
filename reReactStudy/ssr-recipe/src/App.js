@@ -17,7 +17,15 @@ const App = () => {
         <Route path="/red" element={<RedPage />} />
         <Route path="/blue" element={<BluePage />} />
         <Route path="/users/*" element={<UsersPage />} />
-        <Route path="/users/:mov" element={<UserContainer />} />
+        <Route
+          path="/users/:id/*"
+          element={
+            <>
+              <UsersPage />
+              <UserContainer />
+            </>
+          }
+        />
       </Routes>
     </div>
   );

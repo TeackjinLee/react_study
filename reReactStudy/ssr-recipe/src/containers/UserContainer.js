@@ -5,9 +5,9 @@ import { Preloader } from "../lib/PreloadContext";
 import { getUser } from "../modules/users";
 import { useParams } from "react-router-dom";
 
-const UserContainer = ({ id }) => {
-  console.log(id);
-  console.log("sdfs");
+const UserContainer = () => {
+  const { id } = useParams();
+
   const user = useSelector((state) => state.users.user);
   const dispatch = useDispatch();
 
@@ -16,7 +16,6 @@ const UserContainer = ({ id }) => {
 
     dispatch(getUser(id));
   }, [dispatch, id, user]);
-
   if (!user) {
     return <Preloader resolve={() => dispatch(getUser(id))} />;
   }
